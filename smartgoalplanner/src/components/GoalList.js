@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GoalList() {
+function GoalList({ goals }) {
   return (
     <div className="goal-grid">
         <h2>🏆 Your Goals</h2>

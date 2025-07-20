@@ -4,8 +4,8 @@ function GoalItem({ goal }) {
   return (
     <div className="goal-card">
       <h3>{goal.name}</h3>
-      <p>🎯 Target: ${goal.targetAmount}</p>
-      <p>💰 Saved: ${goal.savedAmount}</p>
+      <p>🎯 Target: KE {goal.targetAmount}</p>
+      <p>💰 Saved: KE {goal.savedAmount}</p>
       <p>📦 Category: {goal.category}</p>
       <p>📅 Deadline: {goal.deadline}</p>
       
