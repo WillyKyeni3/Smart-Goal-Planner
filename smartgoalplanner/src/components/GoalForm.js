@@ -1,6 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function GoalForm() {
+    const [formData, setFormData] = useState({
+        name: '',
+        targetAmount: "",
+        savedAmount: "",
+        category: '',
+        deadline: ''
+    });
   return (
     <form className="goal-form">
       <h3>Create New Goal</h3>
