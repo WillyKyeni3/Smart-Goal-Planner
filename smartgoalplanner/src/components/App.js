@@ -5,24 +5,45 @@ import GoalList from './GoalList';
 
 function App() {
     const [goals, setGoals] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Fetch goals from the API when the component mounts
-    useEffect(() => {
-        fetch('http://localhost:4000/goals') // Replace with your API endpoint
+    // Fetch goals using .then()
+    const fetchGoals = () => {
+        setIsLoading(true);
+        fetch('http://localhost:4000/goals')
             .then(response => response.json())
-            .then(data => setGoals(data))
-            .catch(error => console.error('Error fetching goals:', error));
+            .then(data => {
+                setGoals(data);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching goals:', error);
+                alert('Failed to load goals!');
+                setIsLoading(false);
+            });
+    };
+
+    useEffect(() => {
+        fetchGoals();
     }, []);
 
-  return (
-    <div className="container">
-      <h1>Smart Goal Planner</h1>
-      <p>Your journey to achieving SMART goals starts here!</p>
-        <GoalOverview goals={goals}/>
-        <GoalForm />
-        <GoalList goals={goals} />
-    </div>
-  );
+    return (
+        <div className="container">
+            <h1>Smart Goal Planner</h1>
+            <p>Your journey to achieving SMART goals starts here!</p>
+            <GoalOverview goals={goals}/>
+            <GoalForm onGoalAdded={fetchGoals} />
+            {isLoading ? (
+                <p>Loading goals...</p>
+            ) : (
+                <GoalList 
+                    goals={goals} 
+                    onGoalUpdated={fetchGoals} 
+                    onGoalDeleted={fetchGoals} 
+                />
+            )}
+        </div>
+    );
 }
 
 export default App;
