@@ -11,7 +11,7 @@ function GoalOverview({ goals }) {
       <h2>📊 Overview</h2>
       <div className="overview-stats">
         <p>Total Goals: {totalGoals}</p>
-        <p>Total Saved: KE {totalSaved}</p>
+        <p>Total Saved: KE {totalSaved.toLocalString}</p>
         <p>Completed: {completedGoals}</p>
       </div>
     </div>
