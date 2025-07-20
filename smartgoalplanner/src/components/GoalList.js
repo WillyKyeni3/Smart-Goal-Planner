@@ -5,10 +5,9 @@ function GoalList({ goals }) {
   return (
     <div className="goal-grid">
       <h2>🏆 Your Goals</h2>
-      <GoalItem 
-        goals={goals}
-      />
-      {/* GoalItem components will go here */}
+      {goals.map((goal, index) => (
+        <GoalItem key={index} goal={goal} />
+      ))}
     </div>
   );
 }
