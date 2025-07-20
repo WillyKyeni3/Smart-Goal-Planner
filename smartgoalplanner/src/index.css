@@ -69,3 +69,24 @@ body {
 .goal-form button:hover {
   background-color: #218838;
 }
+
+/* Goals List */
+.goals-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Individual goal card */
+.goal-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.goal-card:hover {
+  transform: translateY(-5px);
+}
