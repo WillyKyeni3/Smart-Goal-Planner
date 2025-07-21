@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 
 function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
+    // State to manage editing mode
+    const [isEditing, setIsEditing] = useState(false);
+    // State to manage edited goal data
+    const [editedGoal, setEditedGoal] = useState(goal);
+    // State to manage deposit amount input
     const [depositAmount, setDepositAmount] = useState("");
     
     // Calculate progress percentage
     const progress = Math.min(100, (goal.savedAmount / goal.targetAmount) * 100);
+    const isCompleted = goal.savedAmount >= goal.targetAmount;
     
     const handleDeposit = () => {
         if (!depositAmount || depositAmount <= 0) return;
         
         // PATCH request to update saved amount
-        
         fetch(`http://localhost:4000/goals/${goal.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
