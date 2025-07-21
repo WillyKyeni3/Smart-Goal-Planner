@@ -113,8 +113,16 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
                 />
 
                 {/* Edit form */}
-                <select>
-                    
+                <select 
+                    value={editedGoal.category}
+                    onChange={(e) => setEditedGoal({ ...editedGoal, category: e.target.value })}
+                >
+                    <option value="Travel">Travel</option>
+                    <option value="Education">Education</option>
+                    <option value="Health">Health</option>
+                    <option value="Emergency">Emergency</option>
+                    <option value="Retirement">Retirement</option>
+                    <option value="Vacation">Vacation</option>
                 </select>
                 </>
             )}
