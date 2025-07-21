@@ -105,7 +105,6 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
                     type="number"
                     value={editedGoal.targetAmount}
                     onChange={(e) => setEditedGoal({ ...editedGoal, targetAmount: e.target.value })}
-                    type="number"
                     min="0.01"
                     step="0.01"
                     placeholder="Target amount"
@@ -124,21 +123,46 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
                     <option value="Retirement">Retirement</option>
                     <option value="Vacation">Vacation</option>
                 </select>
+
+                <input 
+                    name="deadline"
+                    value={editedGoal.deadline.split('T')[0]} // Format date for input
+                    onChange={(e) => setEditedGoal({ ...editedGoal, deadline: e.target.value })}
+                    placeholder="Deadline"
+                    type="date"
+                    required
+                />
+
+                <button onClick={handleupdate}>Save</button>
+                <button onClick={() => setIsEditing(false)}>Cancel</button>
                 </>
-            )}
+            ) : (
+            <>
 
             <h3>{goal.name}</h3>
             <p> Target: KE {goal.targetAmount.toLocaleString()}</p>
             <p> Saved: KE {goal.savedAmount.toLocaleString()}</p>
+            <p> Remaining: KE {(goal.targetAmount - goal.savedAmount).toLocaleString()}</p>
             <p> Category: {goal.category}</p>
-            <p> Deadline: {goal.deadline}</p>
-            
+            <p> Deadline: {new Date(goal.deadline).toLocaleDateString()}</p>
+
+
+            {/* Add days left display */}
+            <p>⏱️ Days Left: {daysLeft > 0 ? daysLeft : 'Overdue'}</p>
+
+
             {/* Progress bar */}
             <div className="progress-bar">
                 <div style={{ width: `${progress}%` }}></div>
             </div>
             <p>Progress: {progress.toFixed(1)}%</p>
-            
+
+            {/* Status messages */}
+            {isCompleted && <p className="completed">✅ Goal Completed!</p>}
+            {isOverdue && <p className="overdue">⚠️ Goal Overdue!</p>}
+            {isSoon && <p className="soon">⏳ Goal Due Soon!</p>}
+
+
             {/* Deposit input and buttons */}
             <div className="goal-actions">
                 <input 
@@ -146,11 +170,16 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
                     value={depositAmount}
                     onChange={(e) => setDepositAmount(e.target.value)}
                     placeholder="Deposit amount"
+                    min="0.01"
                 />
+
                 <button onClick={handleDeposit}>Add Deposit</button>
-                <button>Edit</button>
+                <button onClick={() => setIsEditing(true)}>Edit</button>
                 <button onClick={handleDelete}>Delete</button>
             </div>
+            </>
+
+            )}
         </div>
     );
 }
