@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 
+// 
 function GoalForm({ onGoalAdded }) {
+
+    // State to manage form data
     const [formData, setFormData] = useState({
         name: '',
         targetAmount: "",
@@ -9,6 +12,8 @@ function GoalForm({ onGoalAdded }) {
         deadline: ''
     });
 
+    // Handle input changes (controlled components)
+    // Using spread operator to update formData state
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -16,10 +21,12 @@ function GoalForm({ onGoalAdded }) {
         });
     };
 
+
+    // Handle form submission
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        // POST request with .then()
+        // POST request to create a new goal
         fetch('http://localhost:4000/goals', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -53,6 +60,7 @@ function GoalForm({ onGoalAdded }) {
     };
 
     return (
+        // Form for creating a new goal
         <form className="goal-form" onSubmit={handleSubmit}>
             <h3>Create New Goal</h3>
             <input 

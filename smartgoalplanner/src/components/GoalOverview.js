@@ -2,8 +2,8 @@ import React from 'react';
 
 function GoalOverview({ goals }) {
     const totalGoals = goals.length;
-    const totalSaved = goals.reduce((sum, goal) => sum + goal.savedAmount, 0);
-    const completedGoals = goals.filter(goal => goal.savedAmount >= goal.targetAmount).length;
+    const totalSaved = goals.reduce((sum, goal) => sum + goal.savedAmount, 0);  // Sum of all saved amounts
+    const completedGoals = goals.filter(goal => goal.savedAmount >= goal.targetAmount).length;  // Count goals that are fully funded
   
     return (
         <div className="overview-card">

@@ -3,11 +3,12 @@ import GoalOverview from './GoalOverview';
 import GoalForm from './GoalForm';
 import GoalList from './GoalList';
 
+// Main App component
 function App() {
     const [goals, setGoals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Fetch goals using .then()
+    // Fetch goals from the server
     const fetchGoals = () => {
         setIsLoading(true);
         fetch('http://localhost:4000/goals')
@@ -23,6 +24,7 @@ function App() {
             });
     };
 
+    // Fetch goals when the component mounts
     useEffect(() => {
         fetchGoals();
     }, []);
@@ -31,8 +33,12 @@ function App() {
         <div className="container">
             <h1>Smart Goal Planner</h1>
             <p>Your journey to achieving SMART goals starts here!</p>
+
             <GoalOverview goals={goals}/>
+
             <GoalForm onGoalAdded={fetchGoals} />
+            
+            {/* Display loading state or goal list*/}
             {isLoading ? (
                 <p>Loading goals...</p>
             ) : (

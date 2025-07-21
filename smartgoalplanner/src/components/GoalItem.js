@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
     const [depositAmount, setDepositAmount] = useState("");
     
-    // Calculate progress
+    // Calculate progress percentage
     const progress = Math.min(100, (goal.savedAmount / goal.targetAmount) * 100);
     
     const handleDeposit = () => {
         if (!depositAmount || depositAmount <= 0) return;
         
-        // PATCH request with .then()
+        // PATCH request to update saved amount
+        
         fetch(`http://localhost:4000/goals/${goal.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
@@ -22,7 +23,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
             return response.json();
         })
         .then(() => {
-            setDepositAmount("");
+            setDepositAmount(""); // Clear input field
             onGoalUpdated();
         })
         .catch(error => {
@@ -31,6 +32,8 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
         });
     };
 
+    // Handle goal deletion
+    // Confirm before deleting
     const handleDelete = () => {
         if (!window.confirm("Delete this goal?")) return;
         
@@ -51,10 +54,10 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
     return (
         <div className="goal-card">
             <h3>{goal.name}</h3>
-            <p>🎯 Target: KE {goal.targetAmount.toLocaleString()}</p>
-            <p>💰 Saved: KE {goal.savedAmount.toLocaleString()}</p>
-            <p>📦 Category: {goal.category}</p>
-            <p>📅 Deadline: {goal.deadline}</p>
+            <p> Target: KE {goal.targetAmount.toLocaleString()}</p>
+            <p> Saved: KE {goal.savedAmount.toLocaleString()}</p>
+            <p> Category: {goal.category}</p>
+            <p> Deadline: {goal.deadline}</p>
             
             {/* Progress bar */}
             <div className="progress-bar">
@@ -62,6 +65,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
             </div>
             <p>Progress: {progress.toFixed(1)}%</p>
             
+            {/* Deposit input and buttons */}
             <div className="goal-actions">
                 <input 
                     type="number"
