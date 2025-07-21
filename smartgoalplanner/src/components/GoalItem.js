@@ -20,6 +20,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
     const isOverdue = !isCompleted && deadlineDate < today;
     const isSoon = daysLeft <= 30 && !isCompleted && !isOverdue;
 
+    // Handle input changes for editing
     const handleupdate = () => {
         // PATCH request to update goal
         fetch(`http://localhost:4000/goals/${goal.id}`, {
@@ -89,6 +90,35 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
 
     return (
         <div className="goal-card">
+            {/* */}
+            {isEditing ? (
+                <>
+                <input 
+                   name="name"
+                   value={editedGoal.name}
+                   onChange={(e) => setEditedGoal({ ...editedGoal, name: e.target.value })}
+                   placeholder="Goal name"
+                   required
+                />
+                <input 
+                    name="targetAmount"
+                    type="number"
+                    value={editedGoal.targetAmount}
+                    onChange={(e) => setEditedGoal({ ...editedGoal, targetAmount: e.target.value })}
+                    type="number"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Target amount"
+                    required
+                />
+
+                {/* Edit form */}
+                <select>
+                    
+                </select>
+                </>
+            )}
+
             <h3>{goal.name}</h3>
             <p> Target: KE {goal.targetAmount.toLocaleString()}</p>
             <p> Saved: KE {goal.savedAmount.toLocaleString()}</p>
