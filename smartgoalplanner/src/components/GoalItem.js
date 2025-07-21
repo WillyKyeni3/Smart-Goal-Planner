@@ -11,7 +11,38 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
     // Calculate progress percentage
     const progress = Math.min(100, (goal.savedAmount / goal.targetAmount) * 100);
     const isCompleted = goal.savedAmount >= goal.targetAmount;
-    
+
+    // Calculaate days left until deadline
+    const today = new Date();
+    const deadlineDate = new Date(goal.deadline);
+    const timeDiff = deadlineDate - today;
+    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    const isOverdue = !isCompleted && deadlineDate < today;
+    const isSoon = daysLeft <= 30 && !isCompleted && !isOverdue;
+
+    const handleupdate = () => {
+        // PATCH request to update goal
+        fetch(`http://localhost:4000/goals/${goal.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(editedGoal)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Update failed');
+            return response.json();
+        })
+        .then(() => {
+            setIsEditing(false); // Exit editing mode
+            onGoalUpdated();
+        })
+        .catch(error => {
+            console.error('Update error:', error);
+            alert('Failed to update goal!');
+        });
+    }
+        
+
+    // Handle deposit action 
     const handleDeposit = () => {
         if (!depositAmount || depositAmount <= 0) return;
         
