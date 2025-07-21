@@ -1,3 +1,13 @@
 {
-  "goals": []
+  "goals": [
+    {
+      "id": "17e5",
+      "name": "Sibling Checkup",
+      "targetAmount": "5000",
+      "savedAmount": 5000,
+      "category": "Emergency",
+      "deadline": "2025-07-30",
+      "createdAt": "2025-07-21T11:46:04.207Z"
+    }
+  ]
 }
