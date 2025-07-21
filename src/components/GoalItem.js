@@ -23,7 +23,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
     // Handle input changes for editing
     const handleupdate = () => {
         // PATCH request to update goal
-        fetch(`http://localhost:4000/goals/${goal.id}`, {
+        fetch(`https://smart-goal-planner-ywbu.onrender.com/goals/${goal.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(editedGoal)
@@ -48,7 +48,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
         if (!depositAmount || depositAmount <= 0) return;
         
         // PATCH request to update saved amount
-        fetch(`http://localhost:4000/goals/${goal.id}`, {
+        fetch(`https://smart-goal-planner-ywbu.onrender.com/goals/${goal.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -75,7 +75,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
         if (!window.confirm("Delete this goal?")) return;
         
         // DELETE request with .then()
-        fetch(`http://localhost:4000/goals/${goal.id}`, {
+        fetch(`https://smart-goal-planner-ywbu.onrender.com/goals/${goal.id}`, {
             method: 'DELETE'
         })
         .then(response => {

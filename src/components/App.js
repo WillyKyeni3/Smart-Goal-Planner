@@ -11,7 +11,7 @@ function App() {
     // Fetch goals from the server
     const fetchGoals = () => {
         setIsLoading(true);
-        fetch('http://localhost:4000/goals')
+        fetch('https://smart-goal-planner-ywbu.onrender.com/goals')
             .then(response => response.json())
             .then(data => {
                 setGoals(data);

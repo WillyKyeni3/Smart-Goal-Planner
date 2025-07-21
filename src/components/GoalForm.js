@@ -27,7 +27,7 @@ function GoalForm({ onGoalAdded }) {
         event.preventDefault();
         
         // POST request to create a new goal
-        fetch('http://localhost:4000/goals', {
+        fetch('https://smart-goal-planner-ywbu.onrender.com/goals', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
