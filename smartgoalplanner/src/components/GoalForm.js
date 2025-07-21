@@ -8,7 +8,7 @@ function GoalForm({ onGoalAdded }) {
         name: '',
         targetAmount: "",
         savedAmount: "",
-        category: '',
+        category: 'Travel',
         deadline: ''
     });
 
@@ -47,7 +47,7 @@ function GoalForm({ onGoalAdded }) {
             setFormData({
                 name: '',
                 targetAmount: "",
-                category: '',
+                category: 'Travel', // Reset to default category
                 deadline: ''
             });
             // Refresh goals in parent component
@@ -80,13 +80,20 @@ function GoalForm({ onGoalAdded }) {
                 step="0.01"
                 required 
             />
-            <input 
+            <select
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
                 placeholder="Category" 
                 required 
-            />
+                >
+                <option value="Travel">Travel</option>
+                <option value="Education">Education</option>
+                <option value="Health">Health</option>
+                <option value="Emergency">Emergency</option>
+                <option value="Retirement">Retirement</option>
+                <option value="Vacation">Vacation</option>
+            </select>
             <input 
                 name="deadline"
                 value={formData.deadline}
