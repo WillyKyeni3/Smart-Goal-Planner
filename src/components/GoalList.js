@@ -5,8 +5,9 @@ import GoalItem from './GoalItem';
 // Accepts goals, onGoalUpdated, and onGoalDeleted as props
 function GoalList({ goals, onGoalUpdated, onGoalDeleted }) {
     return (
-        <div className="goal-grid">
-            <h2>🏆 Your Goals</h2>
+     <div className='goal-grid'>
+        <h2>🏆 Your Goals</h2>
+        <div className="goal-grid-items">
             {/* / Maps over goals and renders GoalItem for each goal*/}
             {goals.map(goal => (
                 // Render each goal item
@@ -17,6 +18,7 @@ function GoalList({ goals, onGoalUpdated, onGoalDeleted }) {
                     onGoalDeleted={onGoalDeleted}
                 />
             ))}
+        </div>
         </div>
     );
 }
