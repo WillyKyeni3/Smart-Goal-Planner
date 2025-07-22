@@ -153,14 +153,21 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
 
             {/* Progress bar */}
             <div className="progress-bar">
-                <div style={{ width: `${progress}%` }}></div>
+                <div 
+                style={{ 
+                    width: `${progress}%`, 
+                    height: '100%',
+                    backgroundColor: isCompleted ? 'green' : isOverdue ? 'red' : 'orange'
+                }}
+                >
+                </div>
             </div>
             <p>Progress: {progress.toFixed(1)}%</p>
 
             {/* Status messages */}
-            {isCompleted && <p className="completed">✅ Goal Completed!</p>}
-            {isOverdue && <p className="overdue">⚠️ Goal Overdue!</p>}
-            {isSoon && <p className="soon">⏳ Goal Due Soon!</p>}
+            {isCompleted && <p className="completed"> Goal Completed!</p>}
+            {isOverdue && <p className="overdue"> Goal Overdue!</p>}
+            {isSoon && <p className="soon"> Goal Due Soon!</p>}
 
 
             {/* Deposit input and buttons */}
@@ -173,7 +180,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
                     min="0.01"
                 />
 
-                <button onClick={handleDeposit}>Add Deposit</button>
+                <button onClick={handleDeposit}> Deposit</button>
                 <button onClick={() => setIsEditing(true)}>Edit</button>
                 <button onClick={handleDelete}>Delete</button>
             </div>
