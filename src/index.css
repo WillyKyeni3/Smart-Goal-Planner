@@ -138,12 +138,20 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 30px;
-}
+ }
+
+ .goal-grid-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+ }
+
 
 /* Goal Card */
 .goal-card {
   background: var(--card-bg);
   padding: 25px;
+  margin-bottom: 20px;
   border-radius: 12px;
   box-shadow: var(--shadow);
   transition: var(--transition);
@@ -228,7 +236,7 @@ h1 {
 }
 
 .warning::before {
-  content: "⏱";
+  content: "⏳";
   margin-right: 5px;
 }
 
@@ -269,11 +277,11 @@ h1 {
 }
 
 .goal-actions button:nth-child(3) {
-  background-color: var(--secondary);
+  background-color: #6c757d;
 }
 
 .goal-actions button:nth-child(4) {
-  background-color: #6c757d;
+  background-color: var(--danger);
 }
 
 .goal-actions button:hover {
@@ -301,7 +309,7 @@ h1 {
 
 .goal-card > div > button {
   padding: 10px 15px;
-  margin-right: 10px;
+  margin-right: 5px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -315,7 +323,7 @@ h1 {
 }
 
 .goal-card > div > button:last-of-type {
-  background-color: #6c757d;
+  background-color:var(--danger);
   color: white;
 }
 
