@@ -157,7 +157,7 @@ function GoalItem({ goal, onGoalUpdated, onGoalDeleted }) {
                 style={{ 
                     width: `${progress}%`, 
                     height: '100%',
-                    backgroundColor: isCompleted ? 'green' : isOverdue ? 'red' : 'orange'
+                    backgroundColor: isCompleted ? 'green' : isOverdue ? 'red' : '#e9c46a'
                 }}
                 >
                 </div>
