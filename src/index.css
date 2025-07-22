@@ -290,9 +290,9 @@ h1 {
 }
 
 /* Edit form styling */
-.goal-card > div > input,
-.goal-card > div > select {
-  width: 100%;
+div.goal-card  input,
+div.goal-card  select {
+  width: 90%;
   padding: 10px;
   margin-bottom: 12px;
   border: 1px solid #e0e0e0;
@@ -300,14 +300,14 @@ h1 {
   transition: var(--transition);
 }
 
-.goal-card > div > input:focus,
-.goal-card > div > select:focus {
+div.goal-card  input:focus,
+div.goal-card  select:focus {
   border-color: var(--primary);
   outline: none;
   box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
 }
 
-.goal-card > div > button {
+div.goal-card  button {
   padding: 10px 15px;
   margin-right: 5px;
   border: none;
@@ -317,12 +317,12 @@ h1 {
   transition: var(--transition);
 }
 
-.goal-card > div > button:first-of-type {
+div.goal-card  button:first-of-type {
   background-color: var(--primary);
   color: white;
 }
 
-.goal-card > div > button:last-of-type {
+div.goal-card  button:last-of-type {
   background-color:var(--danger);
   color: white;
 }
